@@ -8,14 +8,17 @@ const PedidoListView = observer(class PedidoListView extends Component {
             <Table hover size="sm">
                 <thead>
                 <tr>
-                    <th>#</th>
+       
+                    <th>Empresa</th>
+                    <th>CNPJ</th>
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {this.props.pedidoList.pedidos.map(pedido =>
+                    {
+                        this.props.pedidoList.pedidos.map(pedido =>
                         <PedidoView key={pedido.id} pedido={pedido} />
                     )}
                 </tbody>
@@ -27,8 +30,9 @@ const PedidoListView = observer(class PedidoListView extends Component {
 const PedidoView = observer(({pedido}) => {   
     return(
         <tr  key={pedido.id}>
-            <th scope="row">{pedido.id}</th>
-            <td>{pedido.description}</td>
+            <td>{pedido.empresa}</td>
+            <td>{pedido.cnpj}</td>
+            <td>{pedido.descricao}</td>
             <td>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">

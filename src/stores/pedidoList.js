@@ -1,10 +1,12 @@
 import { observable, decorate } from "mobx"
-import { pedidoEndpoint } from "../utils/endpoints";
+import { getPedidos } from "../Action/PedidoAction";
 
 class Pedido {
     id = 0;
     valor = 0;
-    description = "";
+    descricao = "";
+    empresa = "";
+    cnpj = "";
     status = null;
     changed = false;
     created = true;
@@ -17,7 +19,8 @@ decorate(Pedido, {
     created: observable
 });
 
-class PedidoList {
+class PedidoStore{
+
     pedidos = [];
 
     sendChanges() {
@@ -51,20 +54,25 @@ class PedidoList {
     }
 
     getPedidos() {
-        pedidoEndpoint.get().then(response=>{
+        getPedidos().then(response=>{
             response.data.forEach(pedido => {
+
                 var newPedido = new Pedido();
+
                 newPedido.id = pedido.id;
+                newPedido.empresa = pedido.empresa;
+                newPedido.cnpj = pedido.cnpj;
                 newPedido.valor = pedido.valor;
-                newPedido.description = pedido.description;
+                newPedido.descricao = pedido.descricao;
                 newPedido.status = pedido.status;
                 newPedido.changed = false;
                 newPedido.created = false;
 
                 this.pedidos.push(newPedido);
             });
+
         }).catch(e=>{
-            console.log("Error");
+           console.log(e);
         });
     }
 
@@ -73,11 +81,11 @@ class PedidoList {
     }
 }
 
-decorate(PedidoList, {
+decorate(PedidoStore, {
     pedidos: observable
 });
 
 export {
     Pedido,
-    PedidoList
+    PedidoStore
 }
