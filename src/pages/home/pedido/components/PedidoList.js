@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react';
-import { Table, Input, InputGroup, InputGroupAddon, InputGroupText, Button, ButtonGroup } from 'reactstrap';
+import { Table,  Button, ButtonGroup } from 'reactstrap';
 
 const PedidoList = observer(class PedidoListView extends Component {
     render() {
@@ -33,14 +33,7 @@ const Pedido = observer(({pedido}) => {
             <td>{pedido.empresa}</td>
             <td>{pedido.cnpj}</td>
             <td>{pedido.descricao}</td>
-            <td>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                    <InputGroupText>R$</InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder="100.000,00" value={pedido.valor}  onChange={(e) => {pedido.valor = e.target.value; pedido.changed = true}}/>
-                </InputGroup>
-            </td>
+            <td>R$:{pedido.valor}</td>      
             <td> 
                 <ButtonGroup>
                 <Button outline color="success" onClick={() => {pedido.aprovar()}} active={pedido.status === 'approved'}>Aprovar</Button>

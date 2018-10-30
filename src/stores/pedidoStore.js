@@ -3,18 +3,29 @@ import PedidoModel from '../models/pedidoModel'
 import { getPedidos } from '../actions/pedidoAction';
 
 class  PedidoStore {
+
     pedidos = [];
 
-    addPedido(descricao, empresa, cnpj, valor) {
-        this.pedidos.push(new PedidoModel(this, '?', descricao, empresa, cnpj, valor, 'pendente', true));
+    criarPedido(){     
+        this.pedidos.push(new PedidoModel(this, this.getNewBlockID(), "", "","", "", 'pendente', true));
     }
 
-    addPedidos(pedidos) {
-        pedidos.forEach(pedido => this.addPedido(pedidos));
+    addPedidos(pedidosJS) {
+        this.pedidos = [];
+        pedidosJS.forEach(pedido => this.pedidos.push(new PedidoModel(this, pedido.id, pedido.descricao, pedido.empresa, pedido.cnpj, pedido.valor, pedido.status, false)));
     }
 
-    sincronizarComAPI() {
-        getPedidos(this.addPedidos);
+    listarPedidos(){
+        getPedidos().then(response => {
+            this.addPedidos(response.data);
+        }).catch(e => {
+            window.alert("Ocorreu um erro");
+        });
+    }
+
+    enviar(){
+       //TODO:Implementar Enviar
+       this.listarPedidos();       
     }
 
     aprovarTodos() {
@@ -60,6 +71,24 @@ class  PedidoStore {
 
         return atualizados;
     }   
+
+    getNewBlockID() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+
+    getNewID() {  
+        return this.getNewBlockID() 
+        +this.getNewBlockID() 
+        + '-' 
+        +this.getNewBlockID() 
+        + '-' +this.getNewBlockID()
+        + '-' + this.getNewBlockID() 
+        + '-' + this.getNewBlockID() 
+        + this.getNewBlockID() 
+        + this.getNewBlockID();
+      }
 }
 
 decorate(PedidoStore, {

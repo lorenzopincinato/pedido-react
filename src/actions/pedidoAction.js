@@ -9,14 +9,15 @@ const Endpoint = EndpointFactory(axiosInstance);
 
 const pedidoEndpoint = new Endpoint(({ id = '' }) => '/Pedido' + id);
 
-function getPedidos(callback) {
-    pedidoEndpoint.get().then(response => {
-       callback(response.data);
-    }).catch(e => {
-       console.log(e);
-    });
+function getPedidos() {
+   return pedidoEndpoint.get();
+}
+
+function addPedido(pedido){
+    return pedidoEndpoint.post(pedido);
 }
 
 export {
-    getPedidos
+    getPedidos,
+    addPedido
 }
