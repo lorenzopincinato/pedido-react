@@ -17,7 +17,12 @@ function addPedido(pedido){
     return pedidoEndpoint.post(pedido);
 }
 
+function putPedido(pedido){
+    return pedidoEndpoint.put(pedido);
+}
+
 export {
     getPedidos,
-    addPedido
+    addPedido,
+    putPedido
 }

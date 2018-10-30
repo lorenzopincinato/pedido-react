@@ -1,6 +1,6 @@
 import { observable, decorate } from 'mobx';
 import PedidoModel from '../models/pedidoModel'
-import { getPedidos } from '../actions/pedidoAction';
+import { getPedidos, putPedido } from '../actions/pedidoAction';
 
 class  PedidoStore {
 
@@ -24,8 +24,13 @@ class  PedidoStore {
     }
 
     enviar(){
-       //TODO:Implementar Enviar
-       this.listarPedidos();       
+        this.getAtualizados().forEach(pedido => {
+            putPedido({id: pedido.id, status: pedido.status}).then(() => {
+                pedido.atualizado = false;
+            }).catch(e => {
+                window.alert("Erro ao enviar alterações");
+            })
+       });
     }
 
     aprovarTodos() {
