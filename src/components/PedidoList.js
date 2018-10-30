@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react';
 import { Table, Input, InputGroup, InputGroupAddon, InputGroupText, Button, ButtonGroup } from 'reactstrap';
 
-const PedidoListView = observer(class PedidoListView extends Component {
+const PedidoList = observer(class PedidoListView extends Component {
     render() {
         return (
             <Table hover size="sm">
@@ -19,7 +19,7 @@ const PedidoListView = observer(class PedidoListView extends Component {
                 <tbody>
                     {
                         this.props.pedidoList.pedidos.map(pedido =>
-                        <PedidoView key={pedido.id} pedido={pedido} />
+                        <Pedido key={pedido.id} pedido={pedido} />
                     )}
                 </tbody>
             </Table>
@@ -27,7 +27,7 @@ const PedidoListView = observer(class PedidoListView extends Component {
     }
 });
 
-const PedidoView = observer(({pedido}) => {   
+const Pedido = observer(({pedido}) => {   
     return(
         <tr  key={pedido.id}>
             <td>{pedido.empresa}</td>
@@ -43,13 +43,13 @@ const PedidoView = observer(({pedido}) => {
             </td>
             <td> 
                 <ButtonGroup>
-                <Button outline color="success" onClick={() => {pedido.status = 'approved'; pedido.changed = true}} active={pedido.status === 'approved'}>Aprovar</Button>
-                <Button outline color="danger"  onClick={() => {pedido.status = 'rejected'; pedido.changed = true}} active={pedido.status === 'rejected'}>Rejeitar</Button>
+                <Button outline color="success" onClick={() => {pedido.aprovar()}} active={pedido.status === 'approved'}>Aprovar</Button>
+                <Button outline color="danger"  onClick={() => {pedido.rejeitar()}} active={pedido.status === 'rejected'}>Rejeitar</Button>
                 </ButtonGroup>{' '}
-                <Button outline color="warning" onClick={() => pedido.status = null}>Limpar</Button>
+                <Button outline color="warning" onClick={() => pedido.limpar()}>Limpar</Button>
             </td>
         </tr>
     );
 })
 
-export default PedidoListView;
+export default PedidoList;

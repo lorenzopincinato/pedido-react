@@ -8,7 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.3",
     "axiom": "^0.1.6",
     "axios": "^0.18.0",
-    "axios-endpoints": "0.0.5",
+    "axios-endpoints": "^0.0.5",
     "bootstrap": "4.1.3",
     "mobx": "^5.5.2",
     "mobx-react": "^5.3.5",
