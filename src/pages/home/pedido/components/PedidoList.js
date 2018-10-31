@@ -36,8 +36,8 @@ const Pedido = observer(({pedido}) => {
             <td>R$:{pedido.valor}</td>      
             <td> 
                 <ButtonGroup>
-                <Button outline color="success" onClick={() => {pedido.aprovar()}} active={pedido.status === 'approved'}>Aprovar</Button>
-                <Button outline color="danger"  onClick={() => {pedido.rejeitar()}} active={pedido.status === 'rejected'}>Rejeitar</Button>
+                <Button outline color="success" onClick={() => {pedido.aprovar()}} active={pedido.status === 1}>Aprovar</Button>
+                <Button outline color="danger"  onClick={() => {pedido.rejeitar()}} active={pedido.status === -1}>Rejeitar</Button>
                 </ButtonGroup>{' '}
                 <Button outline color="warning" onClick={() => pedido.limpar()}>Limpar</Button>
             </td>

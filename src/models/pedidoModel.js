@@ -37,17 +37,17 @@ class PedidoModel {
     }
 
     aprovar() {
-        this.status = 'approved'
+        this.status = 1;
         this.alterado = true;
     }
 
     rejeitar() {
-        this.status = 'rejected';
+        this.status = -1;
         this.alterado = true;
     }
 
     limpar() {
-        this.status = 'pending';
+        this.status = 0;
         this.alterado = true;
     }
 

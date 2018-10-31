@@ -7,7 +7,7 @@ class  PedidoStore {
     pedidos = [];
 
     criarPedido(){     
-        this.pedidos.push(new PedidoModel(this, this.getNewBlockID(), "", "","", "", 'pendente', true));
+        this.pedidos.push(new PedidoModel(this, this.getNewBlockID(), "", "","", "", 0, true));
     }
 
     addPedidosAprovacao(pedidosJS) {
