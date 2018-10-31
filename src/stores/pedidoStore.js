@@ -1,6 +1,6 @@
 import { observable, decorate } from 'mobx';
 import PedidoModel from '../models/pedidoModel'
-import { getPedidos, putPedido } from '../actions/pedidoAction';
+import { getPedidos, patchPedido } from '../actions/pedidoAction';
 
 class  PedidoStore {
 
@@ -25,7 +25,7 @@ class  PedidoStore {
 
     enviar(){
         this.getAtualizados().forEach(pedido => {
-            putPedido({id: pedido.id, status: pedido.status}).then(() => {
+            patchPedido({id: pedido.id, status: pedido.status}).then(() => {
                 pedido.atualizado = false;
             }).catch(e => {
                 window.alert("Erro ao enviar alterações");
@@ -69,7 +69,7 @@ class  PedidoStore {
         
         this.pedidos.forEach(
             pedido => {
-                if (pedido.alterado && !pedido.criado)
+                if (pedido.alterado)
                     atualizados.push(pedido);
             }
         );
