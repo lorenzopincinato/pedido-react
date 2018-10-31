@@ -35,7 +35,10 @@ import {
                     <Link to={`${path}/cadastro`}>Cadastro</Link>
                   </DropdownItem>
                   <DropdownItem>
-                   <Link to={`${path}/aprovacao`}>Aprovacao</Link>
+                   <Link to={`${path}/aprovacao`}>Aprovação</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`${path}/aprovacao`}>Histórico</Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PedidoList from "./components/pedidoList";
+import PedidoList from "./components/PedidoList";
 import { Button} from 'reactstrap';
 import PedidoStore from '../../../stores/pedidoStore';
 
@@ -7,7 +7,7 @@ const store = new PedidoStore();
 class PedidoToApprove extends Component {
 
   componentDidMount(){
-    store.listarPedidos();
+    store.listarPedidosAprovacao();
   }
 
     render() {

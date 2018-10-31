@@ -7,17 +7,36 @@ class  PedidoStore {
     pedidos = [];
 
     criarPedido(){     
-        this.pedidos.push(new PedidoModel(this, this.getNewBlockID(), "", "","", "", 'pendente', true));
+        this.pedidos.push(new PedidoModel(this, this.getNewBlockID(), "", "","", "", 0, true));
     }
 
-    addPedidos(pedidosJS) {
+    addPedidosAprovacao(pedidosJS) {
         this.pedidos = [];
-        pedidosJS.forEach(pedido => this.pedidos.push(new PedidoModel(this, pedido.id, pedido.descricao, pedido.empresa, pedido.cnpj, pedido.valor, pedido.status, false)));
+        pedidosJS.forEach(pedido => {
+            if (pedido.status === 0)
+                this.pedidos.push(new PedidoModel(this, pedido.id, pedido.descricao, pedido.empresa, pedido.cnpj, pedido.valor, pedido.status, false))
+        });
     }
 
-    listarPedidos(){
+    addPedidosHistorico(pedidosJS) {
+        this.pedidos = [];
+        pedidosJS.forEach(pedido => {
+            if (pedido.status !== 0)
+                this.pedidos.push(new PedidoModel(this, pedido.id, pedido.descricao, pedido.empresa, pedido.cnpj, pedido.valor, pedido.status, false))
+        });
+    }
+
+    listarPedidosAprovacao(){
         getPedidos().then(response => {
-            this.addPedidos(response.data);
+            this.addPedidosAprovacao(response.data);
+        }).catch(e => {
+            window.alert("Ocorreu um erro");
+        });
+    }
+
+    listarPedidosHistorico(){
+        getPedidos().then(response => {
+            this.addPedidosHistorico(response.data);
         }).catch(e => {
             window.alert("Ocorreu um erro");
         });
