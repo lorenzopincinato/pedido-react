@@ -18,7 +18,7 @@ class PedidoHistory extends Component {
                 <Button color="success" onClick={() => store.aprovarTodos()}>Aprovar</Button>{' '}
                 <Button color="danger" onClick={() => store.rejeitarTodos()}>Rejeitar</Button>{' '}
                 <Button color="warning" onClick={() => store.limparTodos()}>Limpar</Button>{' '}
-                <Button color="primary" onClick={() => store.enviar()}>Enviar</Button>{' '}
+                <Button color="primary" onClick={() => store.enviarHistorico(store)}>Enviar</Button>{' '}
             </React.Fragment>
         );
     }

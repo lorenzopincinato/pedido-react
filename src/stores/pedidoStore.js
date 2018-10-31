@@ -40,12 +40,32 @@ class  PedidoStore {
         }).catch(e => {
             window.alert("Ocorreu um erro");
         });
+    } 
+
+    enviarAprovados(store){
+        var index = 0;
+        var pedidos = this.getAtualizados();
+
+        pedidos.forEach(pedido => {
+            patchPedido({id: pedido.id, status: pedido.status}).then(() => {
+                index++;
+                if (pedidos.length === index)
+                    store.listarPedidosAprovacao();
+            }).catch(e => {
+                window.alert("Erro ao enviar alterações");
+            })
+       });
     }
 
-    enviar(){
-        this.getAtualizados().forEach(pedido => {
+    enviarHistorico(store){
+        var index = 0;
+        var pedidos = this.getAtualizados();
+
+        pedidos.forEach(pedido => {
             patchPedido({id: pedido.id, status: pedido.status}).then(() => {
-                pedido.atualizado = false;
+                index++;
+                if (pedidos.length === index)
+                    store.listarPedidosHistorico();
             }).catch(e => {
                 window.alert("Erro ao enviar alterações");
             })
@@ -71,29 +91,11 @@ class  PedidoStore {
     }
 
     getCriados() {
-        var criados = [];
-
-        this.pedidos.forEach(
-            pedido => {
-                if (pedido.criado)
-                    criados.push(pedido);
-            }
-        );
-
-        return criados;
+        return  this.pedidos.filter((pedido) => {return pedido.criado}); 
     }
 
     getAtualizados() {
-        var atualizados = [];
-        
-        this.pedidos.forEach(
-            pedido => {
-                if (pedido.alterado)
-                    atualizados.push(pedido);
-            }
-        );
-
-        return atualizados;
+      return  this.pedidos.filter((pedido) => {return pedido.alterado}); 
     }   
 
     getNewBlockID() {
