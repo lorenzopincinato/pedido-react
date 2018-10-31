@@ -11,7 +11,7 @@ import {
   DropdownItem
   } from 'reactstrap';
 
-  import {PedidoToAprove, PedidoToInsert} from '../home/pedido/index'
+  import {PedidoToAprove, PedidoToInsert,PedidoHistory} from '../home/pedido/index'
 
  class App extends Component {
 
@@ -38,7 +38,7 @@ import {
                    <Link to={`${path}/aprovacao`}>Aprovação</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`${path}/aprovacao`}>Histórico</Link>
+                    <Link to={`${path}/historico`}>Histórico</Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -48,6 +48,7 @@ import {
           <Switch>
             <Route path={`${path}/cadastro`} component={PedidoToInsert} />
             <Route path={`${path}/aprovacao`} component={PedidoToAprove} />
+            <Route path={`${path}/historico`} component={PedidoHistory} />
           </Switch>
         </div>
       </div>

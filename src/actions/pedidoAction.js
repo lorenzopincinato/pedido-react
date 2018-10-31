@@ -1,6 +1,5 @@
 import axios from 'axios';
 import EndpointFactory from 'axios-endpoints';
-import PedidoModel from '../models/pedidoModel'
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:5000/api'
@@ -16,7 +15,7 @@ function getPedidos() {
 }
 
 function addPedido(pedido){
-    return patchPedidoEndPoint.post(pedido);
+    return getPedidoEndPoint.post(pedido);
 }
 
 function patchPedido(pedido){
