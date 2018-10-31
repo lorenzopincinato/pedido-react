@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import PedidoList from "./components/PedidoList";
 import { Button} from 'reactstrap';
 import PedidoStore from '../../../stores/pedidoStore';
+import PedidoListHistory from './components/PedidoListHistory';
 
 const store = new PedidoStore();
 
@@ -14,9 +14,7 @@ class PedidoHistory extends Component {
     render() {
         return (
            <React.Fragment>
-                <PedidoList pedidoList={store} />              
-                <Button color="success" onClick={() => store.aprovarTodos()}>Aprovar</Button>{' '}
-                <Button color="danger" onClick={() => store.rejeitarTodos()}>Rejeitar</Button>{' '}
+                <PedidoListHistory pedidoList={store} />              
                 <Button color="warning" onClick={() => store.limparTodos()}>Limpar</Button>{' '}
                 <Button color="primary" onClick={() => store.enviarHistorico(store)}>Enviar</Button>{' '}
             </React.Fragment>

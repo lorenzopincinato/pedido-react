@@ -21,25 +21,21 @@ import {
       <div>
         <Navbar color="light" light expand="md">
           <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink>
-                    <Link to={`${path}`}>Pagina Principal</Link>
-                  </NavLink>               
+                <NavItem>            
+                    <Link to={`${path}`}><NavLink>Pagina Principal</NavLink></Link>                       
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Pedidos
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    <Link to={`${path}/cadastro`}>Cadastro</Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                   <Link to={`${path}/aprovacao`}>Aprovação</Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link to={`${path}/historico`}>Histórico</Link>
-                  </DropdownItem>
+                    <Link to={`${path}/cadastro`}>
+                      <DropdownItem>Cadastro</DropdownItem>
+                    </Link>                
+                   <Link to={`${path}/aprovacao`}>  
+                      <DropdownItem>Aprovação</DropdownItem>
+                   </Link>              
+                    <Link to={`${path}/historico`}><DropdownItem>Histórico </DropdownItem></Link> 
                 </DropdownMenu>
               </UncontrolledDropdown>
           </Nav>

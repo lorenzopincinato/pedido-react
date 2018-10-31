@@ -51,14 +51,15 @@ class PedidoModel {
         this.alterado = true;
     }
 
-    toJS() {
-		return {
-			id: this.id,
-			descricao: this.descricao,
-            empresa: this.empresa,
-            cnpj: this.cnpj,
-            valor: this.valor,
-		};
+    get statusToString() {
+        switch (this.status) {
+            case -1:
+                return 'Rejeitado';
+            case 1:
+                return 'Aprovado';
+            default:
+                return 'Pendente';
+        }
     }
 
     fromJS(store, object) {
