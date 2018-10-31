@@ -42,19 +42,21 @@ class  PedidoStore {
         });
     } 
 
-    enviarAprovados(store){
-        var index = 0;
-        var pedidos = this.getAtualizados();
-
-        pedidos.forEach(pedido => {
-            patchPedido({id: pedido.id, status: pedido.status}).then(() => {
-                index++;
-                if (pedidos.length === index)
-                    store.listarPedidosAprovacao();
-            }).catch(e => {
-                window.alert("Erro ao enviar alterações");
-            })
-       });
+    enviarAprovados(){
+        try{
+            this.getAtualizados().forEach(async (pedido) => 
+            {
+                var ret = await patchPedido({id: pedido.id, status: pedido.status});
+                
+                console.log(ret);
+            });
+            
+            return true;
+        }
+        catch(err)
+        {
+            return false;
+        }
     }
 
     enviarHistorico(store){

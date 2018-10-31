@@ -9,6 +9,21 @@ class PedidoToApprove extends Component {
   componentDidMount(){
     store.listarPedidosAprovacao();
   }
+  
+
+  enviarAprovados(){
+    var result = store.enviarAprovados();
+    if(result){
+      setTimeout(
+        function() {
+            store.listarPedidosAprovacao();
+        },
+        500
+    );
+    }else{
+      window.alert('Ocorreu um erro ao executar a requisição')
+    }
+  }
 
     render() {
       return (
@@ -17,7 +32,7 @@ class PedidoToApprove extends Component {
           <Button color="success" onClick={() => store.aprovarTodos()}>Aprovar</Button>{' '}
           <Button color="danger" onClick={() => store.rejeitarTodos()}>Rejeitar</Button>{' '}
           <Button color="warning" onClick={() => store.limparTodos()}>Limpar</Button>{' '}
-          <Button color="primary" onClick={() => store.enviarAprovados(store)}>Enviar</Button>{' '}
+          <Button color="primary" onClick={() => this.enviarAprovados()}>Enviar</Button>{' '}
         </div>
       );
     }
